@@ -1,0 +1,119 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+enum Role {
+  ADMIN
+  BENDAHARA
+  KETUA
+}
+
+enum EventStatus {
+  DRAFT
+  ONGOING
+  COMPLETED
+  CANCELLED
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSE
+}
+
+enum IncomeCategory {
+  KAS_ANGGOTA
+  DONASI
+  SPONSOR
+  PENJUALAN
+  IURAN
+  LAINNYA
+}
+
+enum ExpenseCategory {
+  KONSUMSI
+  PERALATAN
+  TRANSPORTASI
+  HADIAH
+  SEWA
+  ATK
+  DEKORASI
+  LAINNYA
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  username     String   @unique
+  password     String
+  role         Role     @default(BENDAHARA)
+  avatarUrl    String?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  eventsManaged        Event[]       @relation("UserEvents")
+  transactionsInputted Transaction[] @relation("UserTransactions")
+
+  @@map("users")
+}
+
+model Event {
+  id          String      @id @default(cuid())
+  title       String
+  description String?
+  startDate   DateTime
+  endDate     DateTime
+  status      EventStatus @default(DRAFT)
+  isActive    Boolean     @default(true)
+  picName     String
+  createdById String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+
+  createdBy    User          @relation("UserEvents", fields: [createdById], references: [id])
+  transactions Transaction[]
+
+  @@map("events")
+}
+
+model Transaction {
+  id              String           @id @default(cuid())
+  eventId         String
+  type            TransactionType
+  incomeCategory  IncomeCategory?
+  expenseCategory ExpenseCategory?
+  amount          Decimal
+  date            DateTime
+  description     String
+  createdById     String
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  event       Event        @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  createdBy   User         @relation("UserTransactions", fields: [createdById], references: [id])
+  attachments Attachment[]
+
+  @@map("transactions")
+}
+
+model Attachment {
+  id            String   @id @default(cuid())
+  transactionId String
+  fileName      String
+  fileUrl       String
+  fileSize      Int
+  mimeType      String
+  createdAt     DateTime @default(now())
+
+  transaction Transaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+
+  @@map("attachments")
+}
