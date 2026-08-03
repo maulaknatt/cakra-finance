@@ -6,11 +6,14 @@ const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined;
 };
 
+const DEFAULT_SUPABASE_URL =
+  "postgresql://postgres.jrkowhxqkakdyrhvrazy:Cakrafinance%40@aws-0-ap-southeast-2.pooler.supabase.com:6543/postgres?pgbouncer=true";
+
 function createPrismaClient() {
   const connectionString =
     process.env.DATABASE_URL ||
     process.env.DIRECT_URL ||
-    "postgresql://postgres:postgres@localhost:5432/postgres";
+    DEFAULT_SUPABASE_URL;
 
   const pool = new Pool({
     connectionString,
