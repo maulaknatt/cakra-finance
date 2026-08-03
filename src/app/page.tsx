@@ -184,27 +184,35 @@ export default async function WelcomeProfilePage() {
                       <Badge variant="yellow">LIVE</Badge>
                     </div>
 
-                    {/* Balance Showcase */}
+                    {/* Balance Showcase - Privacy Protected */}
                     <div className="rounded-xl border-[2.5px] border-slate-900 bg-emerald-300 p-4 dark:bg-emerald-950 dark:text-emerald-100 shadow-[3px_3px_0px_0px_#0f172a]">
-                      <span className="text-xs font-black uppercase text-slate-950 dark:text-emerald-400 tracking-wider">
-                        Total Saldo Kas Bersih
-                      </span>
-                      <p className="text-3xl font-black text-slate-950 dark:text-white mt-1">
-                        {formatRupiah(netBalance)}
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-black uppercase text-slate-950 dark:text-emerald-400 tracking-wider">
+                          Status Kas Organisasi
+                        </span>
+                        <span className="text-[10px] font-black bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 px-2 py-0.5 rounded-md">
+                          PRIVASI 🔒
+                        </span>
+                      </div>
+                      <p className="text-2xl font-black text-slate-950 dark:text-white mt-1">
+                        Rp •••••••• 🔒
+                      </p>
+                      <p className="text-[11px] font-bold text-slate-700 dark:text-emerald-300 mt-0.5">
+                        Masuk ke akun untuk melihat rincian nominal saldo
                       </p>
                     </div>
 
                     <div className="grid grid-cols-2 gap-3">
                       <div className="p-3 rounded-xl border-[2px] border-slate-900 bg-cyan-200 dark:bg-cyan-950 text-slate-950 dark:text-cyan-100 shadow-[2px_2px_0px_0px_#0f172a]">
                         <span className="text-[10px] font-black uppercase">Pemasukan</span>
-                        <p className="text-base font-extrabold text-emerald-700 dark:text-emerald-400">
-                          {formatRupiah(totalIncome)}
+                        <p className="text-sm font-extrabold text-emerald-700 dark:text-emerald-400 mt-0.5">
+                          Tercatat 🟢
                         </p>
                       </div>
                       <div className="p-3 rounded-xl border-[2px] border-slate-900 bg-rose-200 dark:bg-rose-950 text-slate-950 dark:text-rose-100 shadow-[2px_2px_0px_0px_#0f172a]">
                         <span className="text-[10px] font-black uppercase">Pengeluaran</span>
-                        <p className="text-base font-extrabold text-rose-700 dark:text-rose-400">
-                          {formatRupiah(totalExpense)}
+                        <p className="text-sm font-extrabold text-rose-700 dark:text-rose-400 mt-0.5">
+                          Terverifikasi 📜
                         </p>
                       </div>
                     </div>
@@ -271,12 +279,12 @@ export default async function WelcomeProfilePage() {
                 <span className="text-xs font-black uppercase tracking-wider">Event Kegiatan</span>
               </div>
               <div className="space-y-1">
-                <span className="text-2xl sm:text-3xl font-black block truncate">{formatRupiah(totalIncome)}</span>
-                <span className="text-xs font-black uppercase tracking-wider">Total Pemasukan</span>
+                <span className="text-4xl sm:text-5xl font-black block">100%</span>
+                <span className="text-xs font-black uppercase tracking-wider">Transparansi Kas</span>
               </div>
               <div className="space-y-1">
-                <span className="text-2xl sm:text-3xl font-black block truncate">{formatRupiah(totalExpense)}</span>
-                <span className="text-xs font-black uppercase tracking-wider">Total Pengeluaran</span>
+                <span className="text-4xl sm:text-5xl font-black block">100%</span>
+                <span className="text-xs font-black uppercase tracking-wider">Akuntabilitas Audit</span>
               </div>
               <div className="space-y-1">
                 <span className="text-4xl sm:text-5xl font-black block">{totalUsers}</span>
