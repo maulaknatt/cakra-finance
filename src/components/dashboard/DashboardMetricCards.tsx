@@ -1,5 +1,6 @@
 import { CalendarDays, TrendingUp, TrendingDown, Wallet, Receipt } from "lucide-react";
 import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { formatRupiah } from "@/lib/utils";
 
 interface DashboardMetricCardsProps {
@@ -15,14 +16,14 @@ interface DashboardMetricCardsProps {
 export function DashboardMetricCards({ summary }: DashboardMetricCardsProps) {
   const metrics = [
     {
-      title: "Saldo Keseluruhan",
+      title: "Saldo Kas Bersih",
       value: formatRupiah(summary.overallBalance),
       subtitle: "Total Kas Aktif",
       icon: Wallet,
       badge: "Utama",
-      badgeColor: "bg-teal-500/10 text-teal-700 dark:text-teal-300 border-teal-500/20",
-      accentGradient: "from-teal-500 to-emerald-600",
-      iconBg: "bg-teal-500/10 text-teal-600 dark:bg-teal-400/20 dark:text-teal-300",
+      badgeVariant: "default" as const,
+      cardBg: "bg-emerald-100 dark:bg-slate-900 border-emerald-500",
+      iconBg: "bg-emerald-400 text-slate-950",
     },
     {
       title: "Total Pemasukan",
@@ -30,9 +31,9 @@ export function DashboardMetricCards({ summary }: DashboardMetricCardsProps) {
       subtitle: "Kas & Sponsor Masuk",
       icon: TrendingUp,
       badge: "Debit",
-      badgeColor: "bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border-emerald-500/20",
-      accentGradient: "from-emerald-500 to-green-600",
-      iconBg: "bg-emerald-500/10 text-emerald-600 dark:bg-emerald-400/20 dark:text-emerald-300",
+      badgeVariant: "income" as const,
+      cardBg: "bg-cyan-100 dark:bg-slate-900 border-cyan-500",
+      iconBg: "bg-cyan-400 text-slate-950",
     },
     {
       title: "Total Pengeluaran",
@@ -40,9 +41,9 @@ export function DashboardMetricCards({ summary }: DashboardMetricCardsProps) {
       subtitle: "Biaya Operasional",
       icon: TrendingDown,
       badge: "Kredit",
-      badgeColor: "bg-rose-500/10 text-rose-700 dark:text-rose-300 border-rose-500/20",
-      accentGradient: "from-rose-500 to-red-600",
-      iconBg: "bg-rose-500/10 text-rose-600 dark:bg-rose-400/20 dark:text-rose-300",
+      badgeVariant: "expense" as const,
+      cardBg: "bg-rose-100 dark:bg-slate-900 border-rose-500",
+      iconBg: "bg-rose-400 text-slate-950",
     },
     {
       title: "Total Event",
@@ -50,9 +51,9 @@ export function DashboardMetricCards({ summary }: DashboardMetricCardsProps) {
       subtitle: "Program Kerja",
       icon: CalendarDays,
       badge: "Agenda",
-      badgeColor: "bg-sky-500/10 text-sky-700 dark:text-sky-300 border-sky-500/20",
-      accentGradient: "from-sky-500 to-blue-600",
-      iconBg: "bg-sky-500/10 text-sky-600 dark:bg-sky-400/20 dark:text-sky-300",
+      badgeVariant: "yellow" as const,
+      cardBg: "bg-amber-100 dark:bg-slate-900 border-amber-500",
+      iconBg: "bg-amber-400 text-slate-950",
     },
     {
       title: "Jumlah Transaksi",
@@ -60,46 +61,43 @@ export function DashboardMetricCards({ summary }: DashboardMetricCardsProps) {
       subtitle: "Entry Keuangan",
       icon: Receipt,
       badge: "Audit",
-      badgeColor: "bg-amber-500/10 text-amber-700 dark:text-amber-300 border-amber-500/20",
-      accentGradient: "from-amber-500 to-orange-600",
-      iconBg: "bg-amber-500/10 text-amber-600 dark:bg-amber-400/20 dark:text-amber-300",
+      badgeVariant: "cyan" as const,
+      cardBg: "bg-violet-100 dark:bg-slate-900 border-violet-500",
+      iconBg: "bg-violet-400 text-slate-950",
     },
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 font-sans">
       {metrics.map((m, idx) => {
         const Icon = m.icon;
         return (
           <Card
             key={idx}
-            className="relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:border-slate-800 dark:bg-slate-900/90"
+            className={`cartoon-card-hover p-4 ${m.cardBg}`}
           >
-            {/* Top accent bar */}
-            <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${m.accentGradient}`} />
-
             <div className="flex items-start justify-between gap-2">
-              <div className="space-y-1">
-                <span className="text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <div className="space-y-1 min-w-0">
+                <span className="text-xs font-black uppercase tracking-wider text-slate-700 dark:text-slate-300">
                   {m.title}
                 </span>
-                <p className="text-lg font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
+                <p className="text-lg font-black tracking-tight text-slate-950 dark:text-white truncate">
                   {m.value}
                 </p>
               </div>
 
-              <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${m.iconBg}`}>
+              <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border-[2px] border-slate-900 shadow-[2px_2px_0px_0px_#0f172a] ${m.iconBg}`}>
                 <Icon className="h-5 w-5" />
               </div>
             </div>
 
-            <div className="mt-4 flex items-center justify-between border-t border-slate-100 pt-3 text-[11px] dark:border-slate-800/80">
-              <span className="font-medium text-slate-500 dark:text-slate-400">
+            <div className="mt-4 flex items-center justify-between border-t-[2px] border-slate-900 dark:border-slate-100 pt-2.5 text-xs">
+              <span className="font-extrabold text-slate-600 dark:text-slate-400">
                 {m.subtitle}
               </span>
-              <span className={`inline-flex items-center rounded-full border px-2 py-0.5 font-semibold ${m.badgeColor}`}>
+              <Badge variant={m.badgeVariant} className="text-[10px] px-2 py-0">
                 {m.badge}
-              </span>
+              </Badge>
             </div>
           </Card>
         );

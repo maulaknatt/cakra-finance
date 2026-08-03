@@ -7,7 +7,6 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { TransactionWithRelations } from "@/repositories/transactionRepository";
 import { PrintableReportView } from "@/components/reports/PrintableReportView";
-import { INCOME_CATEGORY_LABELS, EXPENSE_CATEGORY_LABELS } from "@/constants";
 
 interface ReportViewClientProps {
   transactions: TransactionWithRelations[];
@@ -59,22 +58,24 @@ export function ReportViewClient({ transactions, eventsList }: ReportViewClientP
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 font-sans">
       {/* Top Header & Export Controls */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between print:hidden">
         <div>
-          <h1 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-slate-100">
-            Laporan Keuangan Organisasi
+          <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-950 dark:text-white">
+            Laporan Keuangan & Cetak 📄
           </h1>
-          <p className="text-sm text-slate-500 dark:text-slate-400">
+          <p className="text-xs sm:text-sm font-extrabold text-slate-600 dark:text-slate-400">
             Filter, cetak, dan ekspor laporan pertanggungjawaban kas ke format Excel dan PDF
           </p>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2.5">
           <Button
             onClick={handleExcelExport}
-            className="bg-emerald-700 hover:bg-emerald-600 text-white shadow-md gap-2"
+            variant="default"
+            size="default"
+            className="font-extrabold text-xs gap-2"
           >
             <FileSpreadsheet className="h-4 w-4" />
             Ekspor Excel (.xlsx)
@@ -82,8 +83,9 @@ export function ReportViewClient({ transactions, eventsList }: ReportViewClientP
 
           <Button
             onClick={handlePrintPdf}
-            variant="outline"
-            className="border-slate-300 dark:border-slate-800 text-slate-700 dark:text-slate-300 gap-2"
+            variant="yellow"
+            size="default"
+            className="font-extrabold text-xs gap-2"
           >
             <Printer className="h-4 w-4" />
             Cetak / Simpan PDF
@@ -91,16 +93,16 @@ export function ReportViewClient({ transactions, eventsList }: ReportViewClientP
         </div>
       </div>
 
-      {/* Advanced Filter Bar Controls */}
-      <Card className="p-4 print:hidden">
+      {/* Advanced Cartoon Filter Bar Controls */}
+      <Card className="cartoon-card p-4 print:hidden">
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
           {/* Event Filter */}
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-slate-500">Pilih Event</label>
+            <label className="text-[11px] font-black uppercase text-slate-950 dark:text-slate-200">Pilih Event</label>
             <select
               value={eventId}
               onChange={(e) => setEventId(e.target.value)}
-              className="h-10 w-full rounded-lg border border-slate-200 bg-white px-3 text-xs text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+              className="h-11 w-full rounded-xl border-[2.5px] border-slate-900 bg-white px-3 text-xs font-extrabold shadow-[3px_3px_0px_0px_#0f172a] dark:border-slate-100 dark:bg-slate-950 dark:text-white dark:shadow-[3px_3px_0px_0px_#f8fafc]"
             >
               <option value="">Semua Event</option>
               {eventsList.map((evt) => (
@@ -113,11 +115,11 @@ export function ReportViewClient({ transactions, eventsList }: ReportViewClientP
 
           {/* Month Filter */}
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-slate-500">Pilih Bulan</label>
+            <label className="text-[11px] font-black uppercase text-slate-950 dark:text-slate-200">Pilih Bulan</label>
             <select
               value={month}
               onChange={(e) => setMonth(e.target.value)}
-              className="h-10 w-full rounded-lg border border-slate-200 bg-white px-3 text-xs text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+              className="h-11 w-full rounded-xl border-[2.5px] border-slate-900 bg-white px-3 text-xs font-extrabold shadow-[3px_3px_0px_0px_#0f172a] dark:border-slate-100 dark:bg-slate-950 dark:text-white dark:shadow-[3px_3px_0px_0px_#f8fafc]"
             >
               <option value="">Semua Bulan</option>
               <option value="1">Januari</option>
@@ -137,11 +139,11 @@ export function ReportViewClient({ transactions, eventsList }: ReportViewClientP
 
           {/* Year Filter */}
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-slate-500">Tahun</label>
+            <label className="text-[11px] font-black uppercase text-slate-950 dark:text-slate-200">Tahun</label>
             <select
               value={year}
               onChange={(e) => setYear(e.target.value)}
-              className="h-10 w-full rounded-lg border border-slate-200 bg-white px-3 text-xs text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+              className="h-11 w-full rounded-xl border-[2.5px] border-slate-900 bg-white px-3 text-xs font-extrabold shadow-[3px_3px_0px_0px_#0f172a] dark:border-slate-100 dark:bg-slate-950 dark:text-white dark:shadow-[3px_3px_0px_0px_#f8fafc]"
             >
               <option value="">Semua Tahun</option>
               <option value="2026">2026</option>
@@ -152,11 +154,11 @@ export function ReportViewClient({ transactions, eventsList }: ReportViewClientP
 
           {/* Type Filter */}
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-slate-500">Jenis Transaksi</label>
+            <label className="text-[11px] font-black uppercase text-slate-950 dark:text-slate-200">Jenis Transaksi</label>
             <select
               value={type}
               onChange={(e) => setType(e.target.value)}
-              className="h-10 w-full rounded-lg border border-slate-200 bg-white px-3 text-xs text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+              className="h-11 w-full rounded-xl border-[2.5px] border-slate-900 bg-white px-3 text-xs font-extrabold shadow-[3px_3px_0px_0px_#0f172a] dark:border-slate-100 dark:bg-slate-950 dark:text-white dark:shadow-[3px_3px_0px_0px_#f8fafc]"
             >
               <option value="">Semua Jenis</option>
               <option value="INCOME">Pemasukan</option>
@@ -166,14 +168,14 @@ export function ReportViewClient({ transactions, eventsList }: ReportViewClientP
 
           {/* Search Query */}
           <div className="space-y-1">
-            <label className="text-[11px] font-semibold text-slate-500">Pencarian</label>
+            <label className="text-[11px] font-black uppercase text-slate-950 dark:text-slate-200">Pencarian</label>
             <div className="relative">
-              <Search className="absolute left-3 top-3 h-3.5 w-3.5 text-slate-400" />
+              <Search className="absolute left-3.5 top-3.5 h-3.5 w-3.5 text-slate-400 z-10" />
               <Input
                 placeholder="Cari transaksi..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="pl-8 text-xs h-10"
+                className="pl-9 text-xs h-11"
               />
             </div>
           </div>
@@ -181,7 +183,7 @@ export function ReportViewClient({ transactions, eventsList }: ReportViewClientP
       </Card>
 
       {/* Document Printable View Container */}
-      <div className="overflow-auto py-4 bg-slate-100 dark:bg-slate-950/80 rounded-2xl p-4 print:p-0 print:bg-white">
+      <div className="overflow-auto py-4 bg-amber-50 dark:bg-slate-950 rounded-2xl p-4 print:p-0 print:bg-white border-[3px] border-slate-900 dark:border-slate-100 shadow-[5px_5px_0px_0px_#0f172a]">
         <PrintableReportView
           transactions={filteredTransactions}
           eventName={eventNameStr}

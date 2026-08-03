@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
+    --background: 48 100% 96%; /* Warm playful pastel cream */
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -13,62 +13,62 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 160 84% 39%; /* Emerald financial green */
-    --primary-foreground: 210 40% 98%;
+    --primary: 158 75% 42%; /* Cartoon emerald */
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 45 93% 47%; /* Cartoon yellow accent */
+    --secondary-foreground: 222.2 84% 4.9%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 262 83% 58%; /* Cartoon violet accent */
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 346 84% 61%; /* Cartoon coral pink */
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 160 84% 39%;
+    --border: 222.2 84% 4.9%;
+    --input: 222.2 84% 4.9%;
+    --ring: 158 75% 42%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
     --sidebar-bg: 0 0% 100%;
-    --sidebar-border: 214.3 31.8% 91.4%;
+    --sidebar-border: 222.2 84% 4.9%;
   }
 
   .dark {
-    --background: 224 71% 4%; /* Sleek dark navy/slate background */
+    --background: 224 71% 6%; /* Rich cartoon dark slate */
     --foreground: 210 40% 98%;
 
-    --card: 224 71% 7%;
+    --card: 224 64% 10%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 224 71% 7%;
+    --popover: 224 64% 10%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 160 84% 39%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 158 75% 42%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 45 93% 47%;
+    --secondary-foreground: 222.2 84% 4.9%;
 
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 262 83% 58%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 346 84% 61%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 160 84% 39%;
+    --border: 210 40% 98%;
+    --input: 210 40% 98%;
+    --ring: 158 75% 42%;
 
-    --sidebar-bg: 224 71% 6%;
-    --sidebar-border: 217.2 32.6% 15%;
+    --sidebar-bg: 224 64% 8%;
+    --sidebar-border: 210 40% 98%;
   }
 }
 
@@ -80,25 +80,110 @@ body {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Glassmorphism utilities */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+/* Cartoon Neubrutalism Design System Classes */
+
+/* Cartoon Box / Card with 3D Offset Shadow */
+.cartoon-card {
+  border: 3px solid #0f172a;
+  border-radius: 1.25rem;
+  background-color: #ffffff;
+  box-shadow: 5px 5px 0px 0px #0f172a;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.dark .glass-panel {
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+.dark .cartoon-card {
+  border: 3px solid #f8fafc;
+  background-color: #0f172a;
+  box-shadow: 5px 5px 0px 0px #f8fafc;
+}
+
+.cartoon-card-hover:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0px 0px #0f172a;
+}
+
+.dark .cartoon-card-hover:hover {
+  box-shadow: 8px 8px 0px 0px #f8fafc;
+}
+
+/* Cartoon Pressable Button */
+.cartoon-button {
+  border: 2.5px solid #0f172a;
+  border-radius: 0.875rem;
+  font-weight: 700;
+  box-shadow: 4px 4px 0px 0px #0f172a;
+  transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.dark .cartoon-button {
+  border: 2.5px solid #f8fafc;
+  box-shadow: 4px 4px 0px 0px #f8fafc;
+}
+
+.cartoon-button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #0f172a;
+}
+
+.dark .cartoon-button:hover {
+  box-shadow: 6px 6px 0px 0px #f8fafc;
+}
+
+.cartoon-button:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #0f172a;
+}
+
+.dark .cartoon-button:active {
+  box-shadow: 2px 2px 0px 0px #f8fafc;
+}
+
+/* Cartoon Input Field */
+.cartoon-input {
+  border: 2.5px solid #0f172a;
+  border-radius: 0.875rem;
+  box-shadow: 3px 3px 0px 0px #0f172a;
+  transition: all 0.15s ease;
+}
+
+.dark .cartoon-input {
+  border: 2.5px solid #f8fafc;
+  box-shadow: 3px 3px 0px 0px #f8fafc;
+}
+
+.cartoon-input:focus {
+  outline: none;
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px 0px #0f172a;
+}
+
+.dark .cartoon-input:focus {
+  box-shadow: 5px 5px 0px 0px #f8fafc;
+}
+
+/* Cartoon Badge / Sticker */
+.cartoon-badge {
+  border: 2px solid #0f172a;
+  border-radius: 9999px;
+  font-weight: 800;
+  box-shadow: 2px 2px 0px 0px #0f172a;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dark .cartoon-badge {
+  border: 2px solid #f8fafc;
+  box-shadow: 2px 2px 0px 0px #f8fafc;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -106,10 +191,39 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted-foreground) / 0.2);
-  border-radius: 4px;
+  background: #0f172a;
+  border: 2px solid #ffffff;
+  border-radius: 9999px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground) / 0.4);
+.dark ::-webkit-scrollbar-thumb {
+  background: #f8fafc;
+  border: 2px solid #0f172a;
+}
+
+/* Keyframes for Cartoon Floating effect */
+@keyframes cartoon-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+.animate-cartoon-float {
+  animation: cartoon-float 4s ease-in-out infinite;
+}
+
+@keyframes cartoon-wiggle {
+  0%, 100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+.animate-cartoon-wiggle {
+  animation: cartoon-wiggle 3s ease-in-out infinite;
 }

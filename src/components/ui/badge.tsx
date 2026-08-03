@@ -3,19 +3,24 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const badgeVariants = cva(
-  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2",
+  "inline-flex items-center rounded-full border-2 border-slate-900 dark:border-slate-100 px-3 py-0.5 text-xs font-extrabold shadow-[2px_2px_0px_0px_#0f172a] dark:shadow-[2px_2px_0px_0px_#f8fafc] uppercase tracking-wide transition-all",
   {
     variants: {
       variant: {
         default:
-          "border-transparent bg-emerald-100 text-emerald-800 dark:bg-emerald-950/80 dark:text-emerald-300 dark:border-emerald-800",
+          "bg-emerald-400 text-slate-950 dark:bg-emerald-400 dark:text-slate-950",
+        yellow:
+          "bg-amber-400 text-slate-950 dark:bg-amber-400 dark:text-slate-950",
+        cyan:
+          "bg-cyan-400 text-slate-950 dark:bg-cyan-400 dark:text-slate-950",
         secondary:
-          "border-transparent bg-slate-100 text-slate-900 dark:bg-slate-800 dark:text-slate-100",
+          "bg-slate-200 text-slate-900 dark:bg-slate-800 dark:text-slate-100",
         destructive:
-          "border-transparent bg-red-100 text-red-800 dark:bg-red-950/80 dark:text-red-300 dark:border-red-800",
-        outline: "text-slate-950 dark:text-slate-50 border-slate-300 dark:border-slate-700",
-        income: "border-transparent bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400 border-emerald-500/20",
-        expense: "border-transparent bg-rose-500/10 text-rose-600 dark:bg-rose-500/20 dark:text-rose-400 border-rose-500/20",
+          "bg-rose-500 text-white dark:bg-rose-500 dark:text-white",
+        outline: "bg-white text-slate-950 dark:bg-slate-900 dark:text-slate-50",
+        income: "bg-emerald-400 text-slate-950 dark:bg-emerald-400 dark:text-slate-950",
+        expense: "bg-rose-400 text-slate-950 dark:bg-rose-400 dark:text-slate-950",
+        pink: "bg-rose-400 text-slate-950 dark:bg-rose-400 dark:text-slate-950",
       },
     },
     defaultVariants: {

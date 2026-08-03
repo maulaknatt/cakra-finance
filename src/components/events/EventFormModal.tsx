@@ -81,15 +81,15 @@ export function EventFormModal({ isOpen, onClose, initialData }: EventFormModalP
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/70 p-4 backdrop-blur-xs">
-      <Card className="w-full max-w-lg border-slate-200 bg-white shadow-2xl dark:border-slate-800 dark:bg-slate-900">
-        <CardHeader className="flex flex-row items-center justify-between border-b border-slate-100 pb-4 dark:border-slate-800">
-          <CardTitle className="text-lg font-bold text-slate-900 dark:text-slate-100">
-            {initialData ? "Edit Event Kegiatan" : "Tambah Event Baru"}
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-xs font-sans">
+      <Card className="w-full max-w-lg border-[3px] border-slate-900 bg-white p-2 shadow-[6px_6px_0px_0px_#0f172a] dark:border-slate-100 dark:bg-slate-900">
+        <CardHeader className="flex flex-row items-center justify-between border-b-[2px] border-slate-900 pb-3 dark:border-slate-100">
+          <CardTitle className="text-lg font-black text-slate-950 dark:text-white">
+            {initialData ? "Edit Event Kegiatan ✏️" : "Tambah Event Baru 🎪"}
           </CardTitle>
           <button
             onClick={onClose}
-            className="rounded-lg p-1 text-slate-400 hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+            className="rounded-xl border-[2px] border-slate-900 p-1 text-slate-900 hover:bg-rose-200 dark:text-white dark:hover:bg-slate-800"
           >
             <X className="h-5 w-5" />
           </button>
@@ -97,14 +97,14 @@ export function EventFormModal({ isOpen, onClose, initialData }: EventFormModalP
 
         <CardContent className="pt-4">
           {errorMessage && (
-            <div className="mb-4 rounded-lg bg-red-50 p-3 text-xs font-medium text-red-700 dark:bg-red-950/60 dark:text-red-300">
+            <div className="mb-4 rounded-xl border-[2px] border-slate-900 bg-rose-200 p-3 text-xs font-black text-rose-950 shadow-[2px_2px_0px_0px_#0f172a]">
               ⚠️ {errorMessage}
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+              <label className="text-xs font-black uppercase text-slate-950 dark:text-slate-200">
                 Nama Event / Kegiatan *
               </label>
               <Input
@@ -116,16 +116,16 @@ export function EventFormModal({ isOpen, onClose, initialData }: EventFormModalP
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+              <label className="text-xs font-black uppercase text-slate-950 dark:text-slate-200">
                 Penanggung Jawab (PIC) *
               </label>
               <div className="relative">
-                <User className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                <User className="absolute left-3.5 top-3.5 h-4 w-4 text-slate-400 z-10" />
                 <Input
                   placeholder="Contoh: Rian Hidayat"
                   value={picName}
                   onChange={(e) => setPicName(e.target.value)}
-                  className="pl-9"
+                  className="pl-10"
                   required
                 />
               </div>
@@ -133,32 +133,32 @@ export function EventFormModal({ isOpen, onClose, initialData }: EventFormModalP
 
             <div className="grid grid-cols-2 gap-3">
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                <label className="text-xs font-black uppercase text-slate-950 dark:text-slate-200">
                   Tanggal Mulai *
                 </label>
                 <div className="relative">
-                  <Calendar className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                  <Calendar className="absolute left-3.5 top-3.5 h-4 w-4 text-slate-400 z-10" />
                   <Input
                     type="date"
                     value={startDate}
                     onChange={(e) => setStartDate(e.target.value)}
-                    className="pl-9"
+                    className="pl-10 text-xs"
                     required
                   />
                 </div>
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                <label className="text-xs font-black uppercase text-slate-950 dark:text-slate-200">
                   Tanggal Selesai *
                 </label>
                 <div className="relative">
-                  <Calendar className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                  <Calendar className="absolute left-3.5 top-3.5 h-4 w-4 text-slate-400 z-10" />
                   <Input
                     type="date"
                     value={endDate}
                     onChange={(e) => setEndDate(e.target.value)}
-                    className="pl-9"
+                    className="pl-10 text-xs"
                     required
                   />
                 </div>
@@ -166,13 +166,13 @@ export function EventFormModal({ isOpen, onClose, initialData }: EventFormModalP
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+              <label className="text-xs font-black uppercase text-slate-950 dark:text-slate-200">
                 Status Event *
               </label>
               <select
                 value={status}
                 onChange={(e) => setStatus(e.target.value as EventStatus)}
-                className="flex h-10 w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+                className="flex h-11 w-full rounded-xl border-[2.5px] border-slate-900 bg-white px-3 py-2 text-xs font-extrabold shadow-[3px_3px_0px_0px_#0f172a] dark:border-slate-100 dark:bg-slate-950 dark:text-white dark:shadow-[3px_3px_0px_0px_#f8fafc]"
               >
                 {Object.entries(EVENT_STATUS_LABELS).map(([key, val]) => (
                   <option key={key} value={key}>
@@ -183,32 +183,32 @@ export function EventFormModal({ isOpen, onClose, initialData }: EventFormModalP
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+              <label className="text-xs font-black uppercase text-slate-950 dark:text-slate-200">
                 Deskripsi Kegiatan (Opsional)
               </label>
               <div className="relative">
-                <FileText className="absolute left-3 top-3 h-4 w-4 text-slate-400" />
+                <FileText className="absolute left-3.5 top-3.5 h-4 w-4 text-slate-400 z-10" />
                 <textarea
                   placeholder="Tulis rincian singkat kegiatan..."
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
-                  className="flex min-h-[80px] w-full rounded-lg border border-slate-200 bg-white pl-9 pr-3 py-2 text-sm text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+                  className="flex min-h-[80px] w-full rounded-xl border-[2.5px] border-slate-900 bg-white pl-10 pr-3.5 py-2 text-xs font-bold text-slate-950 shadow-[3px_3px_0px_0px_#0f172a] focus:outline-none focus:-translate-x-0.5 focus:-translate-y-0.5 dark:border-slate-100 dark:bg-slate-950 dark:text-white dark:shadow-[3px_3px_0px_0px_#f8fafc]"
                 />
               </div>
             </div>
 
-            <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-100 dark:border-slate-800">
+            <div className="flex items-center justify-end gap-2 pt-3 border-t-[2px] border-slate-900 dark:border-slate-100">
               <Button type="button" variant="outline" onClick={onClose}>
                 Batal
               </Button>
-              <Button type="submit" disabled={isLoading} className="bg-emerald-600 hover:bg-emerald-500 text-white">
+              <Button type="submit" disabled={isLoading} variant="default">
                 {isLoading ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                     Menyimpan...
                   </>
                 ) : (
-                  "Simpan Event"
+                  "Simpan Event 🚀"
                 )}
               </Button>
             </div>

@@ -5,7 +5,7 @@ import { decryptToken } from "@/lib/auth";
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const isDashboardRoute = path.startsWith("/dashboard");
-  const isLoginRoute = path === "/login" || path === "/";
+  const isLoginRoute = path === "/login";
 
   const sessionCookie = request.cookies.get("cakra_session")?.value;
   const session = sessionCookie ? await decryptToken(sessionCookie) : null;
