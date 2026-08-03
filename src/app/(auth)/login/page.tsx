@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Wallet, Lock, User, Eye, EyeOff, Loader2, ShieldCheck, ArrowLeft } from "lucide-react";
+import { Wallet, Lock, User, Eye, EyeOff, Loader2, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -35,12 +35,6 @@ export default function LoginPage() {
     } else {
       setErrorMessage(res.error || res.message);
     }
-  };
-
-  const autofillCredentials = (userRole: "admin" | "bendahara" | "ketua") => {
-    setIdentifier(userRole);
-    setPassword("password123");
-    setErrorMessage("");
   };
 
   return (
@@ -148,37 +142,6 @@ export default function LoginPage() {
                 )}
               </Button>
             </form>
-
-            {/* Quick Autofill Helper for Demo/Testing */}
-            <div className="space-y-3 border-t-[2.5px] border-slate-900 dark:border-slate-100 pt-4">
-              <p className="flex items-center gap-1.5 text-xs font-extrabold text-slate-700 dark:text-slate-300">
-                <ShieldCheck className="h-4 w-4 text-emerald-500" />
-                Uji Coba Cepat (Auto-Fill Demo Credentials):
-              </p>
-              <div className="grid grid-cols-3 gap-2">
-                <button
-                  type="button"
-                  onClick={() => autofillCredentials("admin")}
-                  className="rounded-xl border-[2px] border-slate-900 bg-rose-200 dark:bg-rose-950 p-2 text-center text-xs font-black text-rose-950 dark:text-rose-200 shadow-[2px_2px_0px_0px_#0f172a] hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
-                >
-                  👑 Admin
-                </button>
-                <button
-                  type="button"
-                  onClick={() => autofillCredentials("bendahara")}
-                  className="rounded-xl border-[2px] border-slate-900 bg-emerald-200 dark:bg-emerald-950 p-2 text-center text-xs font-black text-emerald-950 dark:text-emerald-200 shadow-[2px_2px_0px_0px_#0f172a] hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
-                >
-                  💼 Bendahara
-                </button>
-                <button
-                  type="button"
-                  onClick={() => autofillCredentials("ketua")}
-                  className="rounded-xl border-[2px] border-slate-900 bg-sky-200 dark:bg-sky-950 p-2 text-center text-xs font-black text-sky-950 dark:text-sky-200 shadow-[2px_2px_0px_0px_#0f172a] hover:translate-x-0.5 hover:translate-y-0.5 transition-all"
-                >
-                  🎓 Ketua
-                </button>
-              </div>
-            </div>
           </CardContent>
         </Card>
       </div>
