@@ -417,20 +417,20 @@ export default async function WelcomeProfilePage() {
         </section>
       </main>
 
-      {/* Cartoon Footer */}
-      <footer className="border-t-[3px] border-slate-900 dark:border-slate-100 bg-amber-300 dark:bg-slate-950 py-8 px-4 sm:px-8">
+      {/* Footer */}
+      <footer className="border-t-[3px] border-slate-900 dark:border-slate-100 bg-amber-300 dark:bg-slate-950 py-8 px-4 sm:px-8 font-sans">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-xl bg-emerald-400 border-[2px] border-slate-900 shadow-[2px_2px_0px_0px_#0f172a] flex items-center justify-center overflow-hidden">
               <img src="/logo-cakra.jpg" alt="Logo Cakra" className="h-full w-full object-cover" />
             </div>
             <span className="font-black text-slate-950 dark:text-white text-base">
-              Cakra Finance &copy; 2026 - Organisasi Kepemudaan
+              Cakra Finance
             </span>
           </div>
 
-          <p className="text-xs font-bold text-slate-800 dark:text-slate-400">
-            Sistem Laporan Keuangan Organisasi | Didesain dengan gaya Cartoon Neubrutalism
+          <p className="text-xs font-black text-slate-950 dark:text-slate-200">
+            Copyright &copy; 2026 Maulana Bagus. All Rights Reserved.
           </p>
         </div>
       </footer>
