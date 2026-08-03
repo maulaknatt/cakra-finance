@@ -9,7 +9,11 @@ export const metadata: Metadata = {
   title: "Cakra Finance - Laporan Keuangan Organisasi Kepemudaan",
   description: "Sistem Manajemen & Laporan Keuangan Transparan Organisasi Kepemudaan",
   icons: {
-    icon: "/logo-cakra.jpg",
+    icon: [
+      { url: "/logo-cakra.jpg" },
+      { url: "/favicon.ico" },
+    ],
+    shortcut: "/logo-cakra.jpg",
     apple: "/logo-cakra.jpg",
   },
 };
