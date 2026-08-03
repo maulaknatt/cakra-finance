@@ -71,12 +71,20 @@ export async function loginAction(
       message: "Login Berhasil",
       data: sessionUser,
     };
-  } catch (error) {
+  } catch (error: any) {
     console.error("Login Server Action error:", error);
+    const msg = error?.message || "";
+    if (msg.includes("no such table") || msg.includes("P2021") || msg.includes("does not exist")) {
+      return {
+        success: false,
+        message: "Database Belum Terisi",
+        error: "Tabel database belum di-seed. Silakan jalankan perintah 'npm run db:seed' di terminal.",
+      };
+    }
     return {
       success: false,
       message: "Terjadi Kesalahan Server",
-      error: "Gagal memproses autentikasi. Silakan coba lagi.",
+      error: "Gagal memproses autentikasi. Pastikan database lokal telah di-seed (npm run db:seed).",
     };
   }
 }
