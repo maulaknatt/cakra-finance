@@ -58,8 +58,8 @@ export default async function WelcomeProfilePage() {
       <header className="sticky top-0 z-50 bg-amber-300/90 dark:bg-slate-900/90 backdrop-blur-md border-b-[3px] border-slate-900 dark:border-slate-100 px-4 py-3 sm:px-8">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-400 border-[2.5px] border-slate-900 shadow-[3px_3px_0px_0px_#0f172a] group-hover:-translate-y-0.5 transition-transform">
-              <Wallet className="h-6 w-6 text-slate-950" />
+            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-400 border-[2.5px] border-slate-900 shadow-[3px_3px_0px_0px_#0f172a] group-hover:-translate-y-0.5 transition-transform overflow-hidden">
+              <img src="/logo-cakra.jpg" alt="Logo Cakra" className="h-full w-full object-cover" />
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-black tracking-tight text-slate-950 dark:text-white flex items-center gap-1.5">
@@ -171,8 +171,8 @@ export default async function WelcomeProfilePage() {
                   <Card className="p-6 bg-white dark:bg-slate-900 space-y-5 animate-cartoon-float">
                     <div className="flex items-center justify-between border-b-[2.5px] border-slate-900 dark:border-slate-100 pb-4">
                       <div className="flex items-center gap-3">
-                        <div className="h-10 w-10 rounded-xl bg-violet-400 border-[2px] border-slate-900 flex items-center justify-center font-black text-white text-lg shadow-[2px_2px_0px_0px_#0f172a]">
-                          CF
+                        <div className="h-10 w-10 rounded-xl bg-violet-400 border-[2px] border-slate-900 flex items-center justify-center font-black text-white text-lg shadow-[2px_2px_0px_0px_#0f172a] overflow-hidden">
+                          <img src="/logo-cakra.jpg" alt="Logo Cakra" className="h-full w-full object-cover" />
                         </div>
                         <div>
                           <h3 className="font-extrabold text-base text-slate-900 dark:text-white">
@@ -413,8 +413,8 @@ export default async function WelcomeProfilePage() {
       <footer className="border-t-[3px] border-slate-900 dark:border-slate-100 bg-amber-300 dark:bg-slate-950 py-8 px-4 sm:px-8">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-xl bg-emerald-400 border-[2px] border-slate-900 shadow-[2px_2px_0px_0px_#0f172a] flex items-center justify-center font-black">
-              <Wallet className="h-5 w-5 text-slate-950" />
+            <div className="h-10 w-10 rounded-xl bg-emerald-400 border-[2px] border-slate-900 shadow-[2px_2px_0px_0px_#0f172a] flex items-center justify-center overflow-hidden">
+              <img src="/logo-cakra.jpg" alt="Logo Cakra" className="h-full w-full object-cover" />
             </div>
             <span className="font-black text-slate-950 dark:text-white text-base">
               Cakra Finance &copy; 2026 - Organisasi Kepemudaan

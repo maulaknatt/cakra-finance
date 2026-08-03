@@ -62,8 +62,8 @@ export default function LoginPage() {
 
         {/* Header Branding */}
         <div className="flex flex-col items-center text-center space-y-2">
-          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-400 border-[3px] border-slate-900 shadow-[4px_4px_0px_0px_#0f172a] text-slate-950 animate-cartoon-float">
-            <Wallet className="h-8 w-8 text-slate-950" />
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-400 border-[3px] border-slate-900 shadow-[4px_4px_0px_0px_#0f172a] text-slate-950 animate-cartoon-float overflow-hidden">
+            <img src="/logo-cakra.jpg" alt="Logo Cakra" className="h-full w-full object-cover" />
           </div>
           <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-slate-950 dark:text-white">
             Cakra Finance 🔑

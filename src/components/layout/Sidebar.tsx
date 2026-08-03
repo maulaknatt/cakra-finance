@@ -83,8 +83,8 @@ export function Sidebar({ user, isOpen, onClose }: SidebarProps) {
           {/* Brand Header */}
           <div className="flex items-center justify-between px-2 pt-2">
             <Link href="/dashboard" className="flex items-center gap-3 group">
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-400 border-[2.5px] border-slate-900 text-slate-950 shadow-[3px_3px_0px_0px_#0f172a] group-hover:-translate-y-0.5 transition-transform">
-                <Wallet className="h-6 w-6" />
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-emerald-400 border-[2.5px] border-slate-900 text-slate-950 shadow-[3px_3px_0px_0px_#0f172a] group-hover:-translate-y-0.5 transition-transform overflow-hidden">
+                <img src="/logo-cakra.jpg" alt="Logo Cakra" className="h-full w-full object-cover" />
               </div>
               <div className="flex flex-col">
                 <span className="text-lg font-black tracking-tight text-slate-950 dark:text-white">
