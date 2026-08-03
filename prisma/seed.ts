@@ -1,11 +1,15 @@
+import "dotenv/config";
 import { PrismaClient, Role, EventStatus, TransactionType, IncomeCategory, ExpenseCategory } from "@prisma/client";
-import { PrismaLibSql } from "@prisma/adapter-libsql";
+import { PrismaPg } from "@prisma/adapter-pg";
+import { Pool } from "pg";
 import bcrypt from "bcryptjs";
-import path from "path";
 
-const dbPath = "file:" + path.resolve("./dev.db").replace(/\\/g, "/");
-
-const adapter = new PrismaLibSql({ url: dbPath });
+const connectionString = process.env.DIRECT_URL || process.env.DATABASE_URL;
+const pool = new Pool({
+  connectionString,
+  ssl: { rejectUnauthorized: false },
+});
+const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
