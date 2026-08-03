@@ -15,6 +15,14 @@ const createUserSchema = z.object({
   role: z.nativeEnum(Role),
 });
 
+const updateUserSchema = z.object({
+  id: z.string().min(1, "ID pengguna wajib diisi"),
+  name: z.string().min(2, "Nama minimal 2 karakter"),
+  email: z.string().email("Format email tidak valid"),
+  role: z.nativeEnum(Role),
+  password: z.string().optional(),
+});
+
 export async function createUserAction(formData: FormData): Promise<ActionResponse> {
   try {
     const session = await getSession();
@@ -78,6 +86,69 @@ export async function createUserAction(formData: FormData): Promise<ActionRespon
   }
 }
 
+export async function updateUserAction(formData: FormData): Promise<ActionResponse> {
+  try {
+    const session = await getSession();
+    if (!session || session.role !== "ADMIN") {
+      return {
+        success: false,
+        message: "Akses Ditolak",
+        error: "Hanya Administrator yang dapat memperbarui pengguna.",
+      };
+    }
+
+    const rawData = {
+      id: formData.get("id") as string,
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      role: formData.get("role") as Role,
+      password: (formData.get("password") as string) || undefined,
+    };
+
+    const parsed = updateUserSchema.safeParse(rawData);
+    if (!parsed.success) {
+      return {
+        success: false,
+        message: "Validasi Gagal",
+        error: parsed.error.issues[0].message,
+      };
+    }
+
+    let passwordHash: string | undefined = undefined;
+    if (parsed.data.password && parsed.data.password.trim().length > 0) {
+      if (parsed.data.password.trim().length < 6) {
+        return {
+          success: false,
+          message: "Validasi Gagal",
+          error: "Password baru minimal 6 karakter.",
+        };
+      }
+      passwordHash = await hashPassword(parsed.data.password.trim());
+    }
+
+    await UserRepository.updateUser(parsed.data.id, {
+      name: parsed.data.name,
+      email: parsed.data.email,
+      role: parsed.data.role,
+      ...(passwordHash && { passwordHash }),
+    });
+
+    revalidatePath("/dashboard/users");
+
+    return {
+      success: true,
+      message: "Data pengguna berhasil diperbarui!",
+    };
+  } catch (error) {
+    console.error("Update user action error:", error);
+    return {
+      success: false,
+      message: "Gagal memperbarui pengguna",
+      error: "Terjadi kesalahan server.",
+    };
+  }
+}
+
 export async function toggleUserStatusAction(
   userId: string,
   currentStatus: boolean
@@ -115,6 +186,43 @@ export async function toggleUserStatusAction(
     return {
       success: false,
       message: "Gagal memperbarui status",
+      error: "Terjadi kesalahan server.",
+    };
+  }
+}
+
+export async function deleteUserAction(userId: string): Promise<ActionResponse> {
+  try {
+    const session = await getSession();
+    if (!session || session.role !== "ADMIN") {
+      return {
+        success: false,
+        message: "Akses Ditolak",
+        error: "Hanya Administrator yang dapat menghapus pengguna.",
+      };
+    }
+
+    if (userId === session.id) {
+      return {
+        success: false,
+        message: "Operasi Ditolak",
+        error: "Anda tidak dapat menghapus akun Anda sendiri.",
+      };
+    }
+
+    await UserRepository.deleteUser(userId);
+
+    revalidatePath("/dashboard/users");
+
+    return {
+      success: true,
+      message: "Pengguna berhasil dihapus dari sistem.",
+    };
+  } catch (error) {
+    console.error("Delete user error:", error);
+    return {
+      success: false,
+      message: "Gagal menghapus pengguna",
       error: "Terjadi kesalahan server.",
     };
   }
