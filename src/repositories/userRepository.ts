@@ -59,6 +59,7 @@ export class UserRepository {
     data: Partial<{
       name: string;
       email: string;
+      username: string;
       role: Role;
       isActive: boolean;
       passwordHash: string;
@@ -69,6 +70,7 @@ export class UserRepository {
       data: {
         ...(data.name && { name: data.name }),
         ...(data.email && { email: data.email.toLowerCase() }),
+        ...(data.username && { username: data.username.toLowerCase() }),
         ...(data.role && { role: data.role }),
         ...(data.isActive !== undefined && { isActive: data.isActive }),
         ...(data.passwordHash && { password: data.passwordHash }),

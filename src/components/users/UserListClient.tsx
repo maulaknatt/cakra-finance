@@ -45,6 +45,7 @@ export function UserListClient({ users, currentUserId }: UserListClientProps) {
   const [editingUser, setEditingUser] = useState<UserItem | null>(null);
   const [editName, setEditName] = useState("");
   const [editEmail, setEditEmail] = useState("");
+  const [editUsername, setEditUsername] = useState("");
   const [editRole, setEditRole] = useState<Role>("BENDAHARA");
   const [editPassword, setEditPassword] = useState("");
   const [isEditLoading, setIsEditLoading] = useState(false);
@@ -91,6 +92,7 @@ export function UserListClient({ users, currentUserId }: UserListClientProps) {
     setEditingUser(u);
     setEditName(u.name);
     setEditEmail(u.email);
+    setEditUsername(u.username);
     setEditRole(u.role);
     setEditPassword("");
     setEditErrorMessage("");
@@ -107,6 +109,7 @@ export function UserListClient({ users, currentUserId }: UserListClientProps) {
     formData.append("id", editingUser.id);
     formData.append("name", editName);
     formData.append("email", editEmail);
+    formData.append("username", editUsername);
     formData.append("role", editRole);
     if (editPassword.trim()) {
       formData.append("password", editPassword.trim());
@@ -366,8 +369,8 @@ export function UserListClient({ users, currentUserId }: UserListClientProps) {
                   <Input type="email" placeholder="Email" value={editEmail} onChange={(e) => setEditEmail(e.target.value)} required />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-xs font-black uppercase text-slate-950 dark:text-slate-200">Username (Read-Only)</label>
-                  <Input value={`@${editingUser.username}`} disabled className="bg-slate-100 dark:bg-slate-800" />
+                  <label className="text-xs font-black uppercase text-slate-950 dark:text-slate-200">Username *</label>
+                  <Input placeholder="Username" value={editUsername} onChange={(e) => setEditUsername(e.target.value)} required />
                 </div>
                 <div className="space-y-1">
                   <label className="text-xs font-black uppercase text-slate-950 dark:text-slate-200">Password Baru (Opsional)</label>

@@ -19,6 +19,7 @@ const updateUserSchema = z.object({
   id: z.string().min(1, "ID pengguna wajib diisi"),
   name: z.string().min(2, "Nama minimal 2 karakter"),
   email: z.string().email("Format email tidak valid"),
+  username: z.string().min(3, "Username minimal 3 karakter"),
   role: z.nativeEnum(Role),
   password: z.string().optional(),
 });
@@ -101,6 +102,7 @@ export async function updateUserAction(formData: FormData): Promise<ActionRespon
       id: formData.get("id") as string,
       name: formData.get("name") as string,
       email: formData.get("email") as string,
+      username: formData.get("username") as string,
       role: formData.get("role") as Role,
       password: (formData.get("password") as string) || undefined,
     };
@@ -111,6 +113,15 @@ export async function updateUserAction(formData: FormData): Promise<ActionRespon
         success: false,
         message: "Validasi Gagal",
         error: parsed.error.issues[0].message,
+      };
+    }
+
+    const existing = await UserRepository.findByEmailOrUsername(parsed.data.username);
+    if (existing && existing.id !== parsed.data.id) {
+      return {
+        success: false,
+        message: "Username / Email Sudah Digunakan",
+        error: "Username tersebut sudah digunakan oleh pengguna lain.",
       };
     }
 
@@ -129,6 +140,7 @@ export async function updateUserAction(formData: FormData): Promise<ActionRespon
     await UserRepository.updateUser(parsed.data.id, {
       name: parsed.data.name,
       email: parsed.data.email,
+      username: parsed.data.username,
       role: parsed.data.role,
       ...(passwordHash && { passwordHash }),
     });
