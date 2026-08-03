@@ -5,6 +5,8 @@ import { ExportService } from "@/services/exportService";
 import { getSession } from "@/lib/auth";
 import { TransactionType, IncomeCategory, ExpenseCategory } from "@prisma/client";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest) {
   try {
     const session = await getSession();
