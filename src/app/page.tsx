@@ -21,6 +21,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { formatRupiah } from "@/lib/utils";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 
 export default async function WelcomeProfilePage() {
   const session = await getSession();
@@ -73,6 +74,8 @@ export default async function WelcomeProfilePage() {
           </Link>
 
           <div className="flex items-center gap-3">
+            <ThemeToggle />
+
             {session ? (
               <Link href="/dashboard">
                 <Button variant="default" size="default" className="gap-2 font-extrabold">
